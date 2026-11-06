@@ -1,5 +1,5 @@
 def ksa_rc4(khoa: bytes) -> list:
-    """Key Scheduling Algorithm: trộn hoán vị S[0..255] theo khóa."""
+    """Key scheduling algorithm: trộn hoán vị S[0..255] theo khóa."""
     if not khoa:
         raise ValueError("Khóa không được rỗng")
     S = list(range(256))
@@ -11,7 +11,7 @@ def ksa_rc4(khoa: bytes) -> list:
  
  
 def prga_rc4(S: list, so_byte: int) -> bytes:
-    """Pseudo-Random Generation Algorithm: sinh `so_byte` byte dãy khóa.
+    """Pseudo-random generation algorithm: sinh `so_byte` byte dãy khóa.
     Làm việc trên bản sao của S nên không làm hỏng S gốc."""
     S = S[:]
     i = j = 0
@@ -25,7 +25,7 @@ def prga_rc4(S: list, so_byte: int) -> bytes:
  
  
 def rc4_crypt(data: bytes, key: bytes) -> bytes:
-    """Mã hóa HOẶC giải mã: data XOR dãy khóa RC4(key)."""
+    """Mã hóa hoặc giải mã: data XOR dãy khóa RC4(key)."""
     if isinstance(data, str) or isinstance(key, str):
         raise TypeError("data và key phải là bytes (dùng .encode('utf-8'))")
     ks = prga_rc4(ksa_rc4(key), len(data))
